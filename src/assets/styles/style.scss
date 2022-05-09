@@ -1,0 +1,166 @@
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("./fonts/NunitoSans-Regular.woff2") format("woff2");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("./fonts/NunitoSans-Bold.woff2") format("woff2");
+  font-weight: bold;
+}
+
+$gap: 5px;
+$key-size: 50px;
+$title-function-color: #383840;
+$keyboard-background: #EEEEEE;
+$keyboard-border: #CCCCCC;
+$key-background: #616673;
+$active-key-bg: #FA4EAB;
+$hover-key-bg: #FE83C6;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: calc(15 * $key-size + 14 * $gap + 6px + 20px);
+  margin: 0 auto;
+}
+
+.main-title {
+  padding: 30px;
+  text-align: center;
+  font-size: 2.5rem;
+  color: $title-function-color;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  height: 15vh;
+  padding: 10px;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  padding: 10px;
+  border: 3px solid $keyboard-border;
+  border-radius: 5px;
+  background-color: $keyboard-background;
+  user-select: none;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: $gap;
+}
+
+.subtitle {
+  padding: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.key {
+  width: $key-size;
+  height: $key-size;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  font-size: 1.2rem;
+
+  color: white;
+  background-color: $key-background;
+  border-radius: 3px;
+    
+  transition: background-color 0.3s, border-radius 0.3s;
+    
+  &.key_function {
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: $title-function-color;   
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $hover-key-bg;
+  }
+
+  &.active {
+    background-color: $active-key-bg;
+    border-radius: 50px; 
+  }  
+}
+
+.key_size-space {
+  width: calc($key-size * 7 + $gap * 6);
+}
+
+.key_size-wide {
+  width: calc($key-size * 2 + $gap);
+}
+
+.eng-down, .eng-up,
+.ru-down, .ru-up {
+  display: none;
+}
+
+.keyboard.layout-eng {
+  .eng-down {
+    display: inline-block;
+  }
+
+  &.shift {
+      .eng-up{
+        display: inline-block;
+    }
+
+    .eng-down {
+      display: none; 
+    }
+          
+    .letter .eng-down{
+      display: inline-block;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.keyboard.layout-ru {
+  .ru-down {
+    display: block;
+  }
+
+  &.shift {
+    .ru-up {
+      display: block;
+    }
+
+    .ru-down {
+      display: none; 
+    }
+
+    .letter .ru-down{
+      display: block;
+      text-transform: capitalize;
+    }
+  }
+} 
+
+.caps-lock .eng-down,
+.caps-lock .ru-down {
+  text-transform: capitalize;
+}
+

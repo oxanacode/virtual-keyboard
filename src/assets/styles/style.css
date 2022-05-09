@@ -1,1 +1,138 @@
-/*# sourceMappingURL=style.css.map */
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("./fonts/NunitoSans-Regular.woff2") format("woff2");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("./fonts/NunitoSans-Bold.woff2") format("woff2");
+  font-weight: bold;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 846px;
+  margin: 0 auto;
+}
+
+.main-title {
+  padding: 30px;
+  text-align: center;
+  font-size: 2.5rem;
+  color: #383840;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  height: 15vh;
+  padding: 10px;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border: 3px solid #CCCCCC;
+  border-radius: 5px;
+  background-color: #EEEEEE;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 5px;
+}
+
+.subtitle {
+  padding: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.key {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #616673;
+  border-radius: 3px;
+  transition: background-color 0.3s, border-radius 0.3s;
+}
+.key.key_function {
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #383840;
+}
+.key:hover {
+  cursor: pointer;
+  background-color: #FE83C6;
+}
+.key.active {
+  background-color: #FA4EAB;
+  border-radius: 50px;
+}
+
+.key_size-space {
+  width: 380px;
+}
+
+.key_size-wide {
+  width: 105px;
+}
+
+.eng-down, .eng-up,
+.ru-down, .ru-up {
+  display: none;
+}
+
+.keyboard.layout-eng .eng-down {
+  display: inline-block;
+}
+.keyboard.layout-eng.shift .eng-up {
+  display: inline-block;
+}
+.keyboard.layout-eng.shift .eng-down {
+  display: none;
+}
+.keyboard.layout-eng.shift .letter .eng-down {
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.keyboard.layout-ru .ru-down {
+  display: block;
+}
+.keyboard.layout-ru.shift .ru-up {
+  display: block;
+}
+.keyboard.layout-ru.shift .ru-down {
+  display: none;
+}
+.keyboard.layout-ru.shift .letter .ru-down {
+  display: block;
+  text-transform: capitalize;
+}
+
+.caps-lock .eng-down,
+.caps-lock .ru-down {
+  text-transform: capitalize;
+}/*# sourceMappingURL=style.css.map */

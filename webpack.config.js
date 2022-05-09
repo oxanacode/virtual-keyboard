@@ -5,14 +5,15 @@ module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     clean: {
       keep: /\.git/,
     },
   },
   devServer: {
-    static: './dist',
+    open: true,
+    host: 'localhost',
   },
   plugins: [
     new HtmlWebpackPlugin({
