@@ -141,3 +141,60 @@ function keyboardHandler(event) {
 
 window.addEventListener('keydown', keyboardHandler);
 window.addEventListener('keyup', keyboardHandler);
+
+keyboard.node.addEventListener('mousedown', (event) => {
+  const pressedKey = event.target.closest('.key');
+  if (!pressedKey) return;
+  event.preventDefault();
+  pressedKey.classList.add('active');
+  const virtualKey = keys.flat().find((el) => el.code === pressedKey.id);
+  changeText(virtualKey);
+  textarea.node.focus();
+
+  if (pressedKey.id === 'AltLeft') {
+    if (shiftLeftSwitch) switchLanguage();
+  }
+  if (pressedKey.id === 'CapsLock') {
+    capsLockSwitch = !capsLockSwitch;
+    if (capsLockSwitch) {
+      keyboard.node.classList.add('caps-lock');
+    } else {
+      keyboard.node.classList.remove('caps-lock');
+      pressedKey.classList.remove('active');
+    }
+  }
+
+  if (pressedKey.id === 'ShiftLeft') {
+    document.querySelector('#ShiftRight').classList.remove('active');
+    if (shiftLeftSwitch) pressedKey.classList.remove('active');
+    shiftRightSwitch = false;
+    shiftLeftSwitch = !shiftLeftSwitch;
+    shiftSwitch = shiftLeftSwitch;
+  } else if (pressedKey.id === 'ShiftRight') {
+    document.querySelector('#ShiftLeft').classList.remove('active');
+    if (shiftRightSwitch) pressedKey.classList.remove('active');
+    shiftLeftSwitch = false;
+    shiftRightSwitch = !shiftRightSwitch;
+    shiftSwitch = shiftRightSwitch;
+  } else {
+    shiftSwitch = false;
+    if (shiftLeftSwitch) {
+      shiftLeftSwitch = false;
+      document.querySelector('#ShiftLeft').classList.remove('active');
+    }
+    if (shiftRightSwitch) {
+      shiftRightSwitch = false;
+      document.querySelector('#ShiftRight').classList.remove('active');
+    }
+  }
+  if (shiftSwitch)keyboard.node.classList.add('shift');
+  else keyboard.node.classList.remove('shift');
+});
+
+keyboard.node.addEventListener('mouseup', (event) => {
+  const pressedKey = event.target.closest('.key');
+  if (!pressedKey) return;
+  if (pressedKey.id !== 'ShiftLeft'
+    && pressedKey.id !== 'ShiftRight'
+    && pressedKey.id !== 'CapsLock') pressedKey.classList.remove('active');
+});
