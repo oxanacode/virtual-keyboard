@@ -5,7 +5,6 @@ module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
-    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     clean: {
       keep: /\.git/,
@@ -17,9 +16,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Virtual Keyboard',
-      filename: 'index.html',
-      template: 'src/index.html',
+      template: './src/index.html',
     }),
   ],
   module: {
@@ -41,8 +38,5 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
-  },
-  optimization: {
-    runtimeChunk: 'single',
   },
 };
